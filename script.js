@@ -31,3 +31,54 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
     
     this.reset();
 });
+
+let index = 0;
+let autoSlideInterval;
+
+function moveSlide(direction) {
+    const slides = document.querySelectorAll(".carousel-item");
+    const totalSlides = slides.length;
+    
+    index += direction;
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+
+    updateCarousel();
+}
+
+function setSlide(newIndex) {
+    index = newIndex;
+    updateCarousel();
+}
+
+function updateCarousel() {
+    const carousel = document.querySelector(".carousel");
+    carousel.style.transform = `translateX(${-index * 100}%)`;
+
+    // Actualizar los indicadores
+    const dots = document.querySelectorAll(".dot");
+    dots.forEach(dot => dot.classList.remove("active"));
+    dots[index].classList.add("active");
+
+    // Reiniciar auto-slide
+    resetAutoSlide();
+}
+
+// Auto-avanza cada 4 segundos
+function autoSlide() {
+    autoSlideInterval = setInterval(() => {
+        moveSlide(1);
+    }, 4000);
+}
+
+// Reiniciar auto-slide cuando el usuario interactúa
+function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    autoSlide();
+}
+
+// Iniciar el auto-slide al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+    autoSlide();
+    updateCarousel();
+});
