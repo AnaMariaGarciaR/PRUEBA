@@ -1,20 +1,21 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Benne', serif;
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #fffaf0;
+    background-color: #ffffff;
 }
 
 /* Navigation Menu */
 nav {
-    background-color: #ffb6c1;
+    background-color: #7c0450;
     padding: 10px;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
 }
 nav ul {
     list-style: none;
@@ -72,45 +73,110 @@ p {
     border-radius: 5px;
 }
 
-/* Galería de fotos */
+/* Carousel Container */
+.carousel-container {
+    position: relative;
+    max-width: 90%;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Carousel Images */
 .carousel {
     display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 20px;
-    scroll-snap-type: x mandatory;
+    transition: transform 0.5s ease-in-out;
 }
 
-.carousel img {
-    width: auto;  /* Mantiene la proporción original */
-    height: 250px;  /* Ajusta la altura según necesites */
-    border-radius: 10px;
-    object-fit: cover;  /* Evita deformaciones */
-    scroll-snap-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.carousel img:hover {
-    transform: scale(1.05);  /* Efecto de zoom suave al pasar el mouse */
-}
-
-/* RSVP Form */
-form {
+/* Individual carousel item */
+.carousel-item {
+    min-width: 100%;
+    height: 80vh; /* Usa 80% de la altura de la pantalla */
+    max-height: 700px; /* Limita la altura en pantallas grandes */
     display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 }
-input, textarea {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+
+/* Ajuste para pantallas grandes (PC) */
+@media (min-width: 1024px) {
+    .carousel-container {
+        max-width: 600px; /* Reduce el ancho en PC */
+    }
+    .carousel-item {
+        height: 70vh; /* Un poco más pequeño en pantallas grandes */
+        max-height: 600px;
+    }
 }
-button {
-    background-color: #ff69b4;
+
+/* Ajuste para tablets */
+@media (max-width: 1023px) {
+    .carousel-container {
+        max-width: 90%; /* Ocupa más espacio en tablets */
+    }
+}
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+    .carousel-item {
+        height: 250px; /* Reduce la altura en móviles */
+    }
+}
+
+/* Estilo de las imágenes dentro del carrusel */
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto asegura que la imagen cubra todo el espacio sin distorsionarse */
+    object-position: center; /* Centra la imagen */
+}
+
+/* Navigation buttons for carousel */
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 10px;
     border: none;
-    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 2;
+}
+
+button.prev { left: 10px; }
+button.next { right: 10px; }
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Carousel indicators */
+.carousel-indicators {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #717171;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .carousel-item {
+        height: 250px; /* Ajuste para dispositivos móviles */
+    }
 }
