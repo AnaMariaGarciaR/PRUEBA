@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation | Alejandro & Valentina</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Benne&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -54,10 +55,19 @@
     <!-- Photo Gallery -->
     <section id="gallery">
         <h2>Our Moments</h2>
-        <div class="carousel">
-            <img src="Images/photo1.jpeg" alt="Photo 1">
-            <img src="Images/photo2.jpeg" alt="Photo 2">
-            <img src="Images/photo3.jpeg" alt="Photo 3">
+        <div class="carousel-container">
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="carousel">
+                <div class="carousel-item"><img src="Images/photo1.jpeg" alt="Photo 1"></div>
+                <div class="carousel-item"><img src="Images/photo2.jpeg" alt="Photo 2"></div>
+                <div class="carousel-item"><img src="Images/photo3.jpeg" alt="Photo 3"></div>
+            </div>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+        <div class="carousel-indicators">
+            <span class="dot" onclick="setSlide(0)"></span>
+            <span class="dot" onclick="setSlide(1)"></span>
+            <span class="dot" onclick="setSlide(2)"></span>
         </div>
     </section>
 
